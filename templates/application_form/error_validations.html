@@ -1,0 +1,43 @@
+{% if appsource_form.errors or personaldata_form.errors or permanentaddress_form.errors or currentaddress_form.errors or spouse_form.errors or college_form.errors or highschool_form.errors or emergencycontact_form.errors or backgroundinfo_form.errors or passport_form.errors or sbook_form.errors or coc_form.errors or license_form.errors or src_form.errors or goc_form.errors or usvisa_form.errors or schengenvisa_form.errors or yellowfever_form.errors or seaservice_form.errors or app_form.errors %}
+  <div class="form-group">
+    <div class="errorlist-group" >
+      <ul class="errorlist">
+        {% if appsource_form.errors %}
+          <li><a href="#step-2">Please indicate where you have learned Manship</a></li>
+        {% endif %}
+
+        {% if personaldata_form.errors or permanentaddress_form.errors or currentaddress_form.errors or spouse_form.errors %}
+          <li><a href="#step-3">Please fill up everything in your Personal Data</a></li>
+        {% endif %}
+
+        {% if college_form.errors or highschool_form.errors %}
+          <li><a href="#step-4">Please fill up everything in your Education Information</a></li>
+        {% endif %}
+
+        {% if emergencycontact_form.errors %}
+          <li><a href="#step-5">Please fill up everything in your Emergency Contact Details</a></li>
+        {% endif %}
+
+        {% if backgroundinfo_form.errors %}
+          <li><a href="#step-7">Please fill up everything in your Background Information</a></li>
+        {% endif %}
+
+        {% if passport_form.errors or sbook_form.errors or coc_form.errors or license_form.errors or src_form.errors or goc_form.errors or usvisa_form.errors or schengenvisa_form.errors or yellowfever_form.errors %}
+          <li><a href="#step-8">Please fill up everything in your National Certificates and Travel Documents</a></li>
+        {% endif %}
+
+        {% if app_form.errors %}
+          {% if app_form.training_certificates.errors %}
+            <li><a href="#step-10">Please select your Trainings and Certificates</a></li>
+          {% endif %}
+          {% if app_form.essay.errors %}
+            <li><a href="#step-10">Please fill up the essay</a></li>
+          {% endif %}
+          {% if app_form.signature.errors  %}
+            <li><a href="#signature" data-toggle="modal">Please do not forget your signature</a></li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </div>  
+  </div>
+{% endif %}

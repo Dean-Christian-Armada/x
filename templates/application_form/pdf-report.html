@@ -1,0 +1,508 @@
+{% load static %}
+{% load pdf_image %}
+
+{% static "img/small_logo.png" as small_logo %}
+{# ressource.image.url|get64:domain|add:small_logo #}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PDF Example</title>
+	<style type="text/css">
+		body{ font-size:12px; }
+		th, td{ padding:5px; padding-bottom:0px; }
+	</style>
+</head>
+<body>
+<!-- 	<div style="border:1px solid black;">
+		<img style="float:left" src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/small_logo.png' }}">
+	</div> -->
+	<table>
+		<tr>
+			<td valign="top">
+				<img style="float:left" src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/small_logo.png' }}"><br />
+				Date of Application: <u>08/10/2015</u><br />
+				Position Applied For: <u>Chief Engineer</u><br />
+				Alternative Position: <u></u><br />
+				Seaman Code: 
+			</td>
+			<td style="text-align:right">
+				<span style="font-size:24px; font-weight:700">APPLICATION FORM</span><br />
+				<span style="font-size:12px; font-weight:700">FORM REF. MANSHIP QP07-04-07</span><br />
+				<br />
+				<img style="float:left" src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/media/tmp_photos/someimage.jpg' }}">
+			</td>
+		</tr>
+	</table>
+	<br ><br >
+	<table border="1">
+		<tr>
+			<th style="text-align: left; ">How did you learn about MANSHIP?</th>
+		</tr>
+		<tr>
+			<td style="padding-left: 20px;"> 
+				<span style="color:#ccc;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"></span> Advertisement(Please specify): <u>Sample Answer</u> <br />
+				<span style="color:#ccc;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"></span> Internet(Website Name/Address) <br />
+				<span style="color:#ccc;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"></span> Friends or Relatives(Please Specify) <br />
+				<span style="color:#ccc;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"></span> Internet(Website Name/Address) <br />
+				<span style="color:#ccc;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"></span> Seafarer Center <br /> <br />
+			</td>
+		</tr>
+	</table>
+	<br >
+	<table border="1">
+		<tr>
+			<th style="text-align: left; ">PERSONAL DATA</th>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Surname: <u>Armada</u></td>
+					<td>First Name: <u>Dean Christian</u></td>
+					<td>Middle Name: <u>Gunto</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Age: <u>23</u></td>
+					<td>Birthday: <u>01/31/92</u></td>
+					<td>Birthplace: <u>Valenzuela City</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Age: <u>23</u></td>
+					<td>Birthday: <u>01/31/92</u></td>
+					<td>Birthplace: <u>Valenzuela City</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Landline No. 1: <u>799-25-01</u></td>
+					<td>Mobile No. 1: <u>0927-7411-526</u></td>
+					<td>Email 1: <u>armadadean@yahoo.com</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Landline No. 2: <u></u></td>
+					<td>Mobile No. 2: <u></u></td>
+					<td>Email 2: <u></u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Preferred Vessel Type: <u>BULK</u></td>
+					<td>Date of Availability: <u>08/27/2015</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>SSS No.: <u>314-392800-3</u></td>
+					<td>Philhealth No.: <u>2200-0191-4596</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>T.I.N: <u>281-388-704-000</u></td>
+					<td>Pagibig No.: <u></u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<th style="text-align:left"><i>Permanent Address</i></th>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Street: <br /><u>Lot 13 Block 6 Don Pio Street.</u></td>
+					<td>Baranggay: <br /><u>Holy Spirit</u></td>
+					<td>Town: <br /><u>Don Enrique Heights</u></td>
+					<td>Municipality: <br /><u>Quezon City</u></td>
+					<td>Zip Code: <br /><u>1127</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<th style="text-align:left"><i>Current Address</i></th>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Street: <br /><u>Lot 13 Block 6 Don Pio Street.</u></td>
+					<td>Baranggay: <br /><u>Holy Spirit</u></td>
+					<td>Town: <br /><u>Don Enrique Heights</u></td>
+					<td>Municipality: <br /><u>Quezon City</u></td>
+					<td>Zip Code: <br /><u>1127</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Civil Status: <u>Single</u></td>
+					<td>Date Married: <u>08/27/2020</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Spouse's Maiden Name: <u>Angelica Umali Cid</u></td>
+					<td>Spouse's Birthday: <u>08/01/1992</u></td>
+					<td>Date Married: <u>08/27/2020</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Father's Full Name: <u>Saleh Latumbo Armada</u></td>
+					<td>Mother's Full Name: <u>Dalisay Salvador Guinto</u></td>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br /><br />
+	<table border="1">
+		<tr>
+			<th width="100%" style="text-align: left; ">EDUCATIONAL INFORMATION</th>
+			<th width="20%">FROM</th>
+			<th width="20%">TO</th>
+		</tr>
+		<tr>
+			<td colspan="3" style="padding:0px">
+				<table border="1">
+					<td width="60%">Name of College: <u>Don Bosco Technical College</u></td>
+					<td width="40%">Degree Obtained: <u>BSIT</u></td>
+					<td width="20%" align="center">2009</td>
+					<td width="20%" align="center">2013</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td width="100%" style="text-align: left; ">Highschool: <u>Diliman Preparatory School</u></th>
+			<td width="20%" align="center">2008</td>
+			<td width="20%" align="center">2004</td>
+		</tr>
+	</table>
+	<br />
+	<table border="1">
+		<tr>
+			<th style="text-align: left">EMERGENCY CONTACT DETAILS</th>
+		</tr>
+		<tr>
+			<th style="text-align: left">Person to Contact in Case of Emergency: <u>Dalisay Armada</u></th>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Contact No.: <u>0917-8866-981</u></td>
+					<td>Relationship: <u>Mother-Son</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Street: <br /><u>Lot 13 Block 6 Don Pio Street.</u></td>
+					<td>Baranggay: <br /><u>Holy Spirit</u></td>
+					<td>Town: <br /><u>Don Enrique Heights</u></td>
+					<td>Municipality: <br /><u>Quezon City</u></td>
+					<td>Zip Code: <br /><u>1127</u></td>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br />
+	<table border="1">
+		<tr>
+			<th width="100%" style="text-align: left">BACKGROUND INFORMATION</th>
+			<th width="10%">YES</th>
+			<th width="10%">NO</th>
+		</tr>
+		<tr>
+			<td>
+				Have you ever been denied an application for any visa or entry into another country?
+				<br /><b><i>Explanation:</i></b> <br />
+				<u>This is just a sample explanation by Dean Armada</u>
+			</td>
+			<td align="center" style="padding-top:0px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"></td>
+			<td align="center" style="padding-top:0px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"></td>
+		</tr>
+		<tr>
+			<td>
+				Have you ever been denied or ordered to leave any country?
+			</td>
+			<td align="center" style="padding-top:0px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"></td>
+			<td align="center" style="padding-top:0px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"></td>
+		</tr>
+		<tr>
+			<td>
+				Have you ever been subject of any disciplinary action during an employment contract?
+			</td>
+			<td align="center" style="padding-top:0px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"></td>
+			<td align="center" style="padding-top:0px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"></td>
+		</tr>
+	</table>
+	<br />
+	<table border="1">
+		<tr>
+			<th style="text-align: left">NATIONAL CERTIFICATES AND TRAVEL DOCUMENTS</th>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>Passport No.: <u>EB5464713</u></td>
+					<td>Expiry: <u>05/23/2017</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>SBook No.: <u>B1184527</u></td>
+					<td>Expiry: <u>05/21/2017</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>COC/COE: <u>E1-0006380</u></td>
+					<td>Expiry: <u>12/31/2016</u></td>
+					<td>Rank: <u>Chief Engineer</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>License: <u>E1-0006380</u></td>
+					<td>Rank: <u>Chief Engineer</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>SRC: <u>GB04719-94</u></td>
+					<td>Rank: <u>Chief Engineer</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td>GOC: <u></u></td>
+					<td>Expiry: <u></u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-top:0px">US Visa (C1/D) <img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> Yes <img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> No</td>
+					<td>Expiry: <u>01/31/2015</u></td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-top:0px">Schengen Visa (Type C) <img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> Yes <img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> No</td>
+					<td>Expiry: <u>01/31/2018</u></td>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br />
+	<table border="1">
+		<tr>
+			<th style="text-align: left">FLAG DOCUMENTS</th>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> Caymen Islands</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> Marshall Islands</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> Liberia</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> Cyprus</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> Singapore</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> Greek</td>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<table border="1">
+		<tr>
+			<th style="text-align: left">TRAINING AND OTHER CERTIFICATES</th>
+		</tr>
+		<tr>
+			<th style="text-align: left"><i>Certificate of Proficiency</i></th>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> COP-BT</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> COP-BTOC</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> COP-ATOT</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> COP-ATCT</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> COP-PFRB</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> COP-AFF</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> COP-MEFA</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> COP-MECA</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> COP-SSO</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> COP-PSCRB</td>
+					<td style="padding-bottom:5px;" colspan="2"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> COP-SSA/SDSD</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<th style="text-align: left"><i>Segregate on Process</i></th>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> BT</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> PSCRB</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> AFF</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> MEFA</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> MECA</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> PFRB</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> SSBT</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> BRM</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> BTM</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> BTOC</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> SBFF</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> ATOT</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> ATCT</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> INMARSAT</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> GMDSS</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> PADAMS</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> HAZMAT</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> COW/IGS</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> ERS/ERM</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> SRROC</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> FRAMO</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> SOS</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> SOC</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> BWK/EWK</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> RSC</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> ISM</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> SSMEP</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> ACNI</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> SSA/SDSD</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> ARPA/ROPA</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> ECDIS GENERIC</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> MLC - Deck</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> MARPOL I-VI</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> MLC - Engine</td>
+					<td style="padding-bottom:5px;"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> ECDIS Specific</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					
+					<td style="padding-bottom:5px;" colspan="2"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/uncheck.jpg' }}"> SHIP VETTING</td>
+					<td style="padding-bottom:5px;" colspan="2"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> SHIP HANDLING</td>
+					<td style="padding-bottom:5px;" colspan="2"><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/static/img/check.jpg' }}"> MARITIME ENG.</td>
+					
+				</table>
+			</td>
+		</tr>	
+	</table>
+	<br />
+	<table border="1">
+		<tr>
+			<th align="left">ESSAY <i>(52 words)</i></th>
+		</tr>
+		<tr>
+			<td>Hi My Name is Dean Armada! I'm a proud graduate of Don Bosco Technical College. I am currently a Senior Consultant on a Marine Industry at Manship. I am a huge fan of Albert Einstein for Brains, Floyd Mayweather for Lifestyle, Terry Crews for Muscle, Usain Bolt for Athlecism and Naruto for heroism and attitude.</td>
+		</tr>
+	</table>
+	<br />
+	<table border="1">
+		<tr>
+			<th align="left">CERTIFICATION</i></th>
+		</tr>
+		<tr>
+			<td>
+				<i>
+					<b>1.</b> I certify that all information I have provided on this Application Form is, to the best of my knowledge true and correct. <br />
+					<b>2.</b> I agree that if I have withheld or misrepresented any information on this Application Form. I alone am responsible and accountable for any consequence of such withholding or mispresentation.<br />
+					<b>3.</b> I understand that the information I provided this Application Form shall remain confidential, but I may be held liable for any untruthful statements made therein
+				</i>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 0px;">
+				<table border="1">
+					<td valign="top"><b>Printed Name:</b> <br ><u>Dean Christian Armada</u></td>
+					<td style="padding-bottom:5px;" colspan="2"><b>Signature:</b> <br ><img src="{{ ressource.image.url|get64:'http://192.168.0.50:8005/media/signatures/example_sig.png' }}"></td>
+					<td valign="top"><b>Date:</b> <br /> <u>08/10/2015</u></td>
+				</table>
+			</td>
+		</tr>	
+	</table>
+</body>
+</html>

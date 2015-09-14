@@ -26,6 +26,7 @@ class VesselName(models.Model):
 
 class VesselType(models.Model):
 	vessel_type = models.CharField(max_length=50, default=None)
+	company_standard = models.NullBooleanField(max_length=50, default=False)
 	date_created = models.DateTimeField(auto_now_add=True, )
 	date_modified = models.DateTimeField(auto_now=True, blank=True, )
 
@@ -49,6 +50,7 @@ class CivilStatus(models.Model):
 
 class Colleges(models.Model):
 	college_name = models.CharField(max_length=100, default=None)
+	company_standard = models.NullBooleanField(max_length=50, default=True)
 	date_created = models.DateTimeField(auto_now_add=True, )
 	# full_name = models.CharField(max_length=100, default=None)
 
@@ -57,6 +59,7 @@ class Colleges(models.Model):
 
 class Degree(models.Model):
 	degree = models.CharField(max_length=100, default=None)
+	company_standard = models.NullBooleanField(max_length=50, default=True)
 	date_created = models.DateTimeField(auto_now_add=True, )
 	# full_name = models.CharField(max_length=100, default=None)
 
@@ -73,6 +76,7 @@ class HighSchools(models.Model):
 
 class Relationship(models.Model):
 	relationship = models.CharField(max_length=50, default=None)
+	company_standard = models.NullBooleanField(max_length=50, default=True)
 	date_created = models.DateTimeField(auto_now_add=True, )
 	date_modified = models.DateTimeField(auto_now=True, blank=True, )
 
@@ -82,6 +86,7 @@ class Relationship(models.Model):
 class Rank(models.Model):
 	rank = models.CharField(max_length=50, default=None)
 	hiring = models.BooleanField(default=0)
+	company_standard = models.NullBooleanField(max_length=50, default=False)
 	# Application Form Ordering Dorpdown Purposes
 	order = models.PositiveSmallIntegerField(default=None, null=True, blank=True)
 	date_created = models.DateTimeField(auto_now_add=True, )
@@ -92,11 +97,16 @@ class Rank(models.Model):
 
 class COCRank(models.Model):
 	coc_rank = models.CharField(max_length=50, default=None)
+	company_standard = models.NullBooleanField(max_length=50, default=False)
 	date_created = models.DateTimeField(auto_now_add=True, )
 	date_modified = models.DateTimeField(auto_now=True, blank=True, )
 
+	def __unicode__(self):
+		return self.coc_rank
+
 class EngineType(models.Model):
 	engine_type = models.CharField(max_length=50, default=None)
+	company_standard = models.NullBooleanField(max_length=50, default=True)
 	date_created = models.DateTimeField(auto_now_add=True, )
 	date_modified = models.DateTimeField(auto_now=True, blank=True, )
 
@@ -105,6 +115,7 @@ class EngineType(models.Model):
 
 class ManningAgency(models.Model):
 	manning_agency = models.CharField(max_length=50, default=None)
+	company_standard = models.NullBooleanField(max_length=50, default=True)
 	date_created = models.DateTimeField(auto_now_add=True, )
 	date_modified = models.DateTimeField(auto_now=True, blank=True, )
 
@@ -121,6 +132,7 @@ class CauseOfDischarge(models.Model):
 
 class Municipality(models.Model):
 	municipality = models.CharField(max_length=50, default=None)
+	company_standard = models.NullBooleanField(max_length=50, default=True)
 	date_created = models.DateTimeField(auto_now_add=True, )
 	date_modified = models.DateTimeField(auto_now=True, blank=True, )
 
@@ -129,6 +141,7 @@ class Municipality(models.Model):
 
 class Barangay(models.Model):
 	barangay = models.CharField(max_length=50, default=None)
+	company_standard = models.NullBooleanField(max_length=50, default=True)
 	date_created = models.DateTimeField(auto_now_add=True, )
 	date_modified = models.DateTimeField(auto_now=True, blank=True, )
 
@@ -184,9 +197,17 @@ class Branch(models.Model):
 
 class PassportPlaceIssued(models.Model):
 	place = models.CharField(max_length=50, default=None, blank=True)
+	company_standard = models.NullBooleanField(max_length=50, default=True)
+
+	def __unicode__(self):
+		return self.place
 
 class SBookPlaceIssued(models.Model):
 	place = models.CharField(max_length=50, default=None, blank=True)
+	company_standard = models.NullBooleanField(max_length=50, default=True)
+
+	def __unicode__(self):
+		return self.place
 
 class Zip(models.Model):
 	zip = models.PositiveIntegerField(unique=True, default=None)

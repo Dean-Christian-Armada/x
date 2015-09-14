@@ -940,3 +940,6 @@ class ApplicationForm(autocomplete_light.ModelForm):
 			pass
 		value = self.cleaned_data
 		MarinersProfile.objects.create(**value)
+
+class StatusForm(forms.Form):
+	status = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(renderer=HorizontalRadioRenderer), queryset=Status.objects.filter(), required=False)

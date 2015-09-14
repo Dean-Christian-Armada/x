@@ -63,6 +63,7 @@ def form(request):
 	application = ApplicationForm(initial={'scheme': scheme, 'http_host': http_host})
 
 	if request.method == "POST":
+		print request.POST
 		applicant_name = ApplicantNameForm(request.POST)
 		permanent_address = PermanentAddressForm(request.POST)
 		current_address = CurrentAddressForm(request.POST)

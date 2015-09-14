@@ -1,15 +1,19 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 
 from login.models import UserProfile
 from . models import *
+
+from application_form.forms import FlagForm, TrainingCertificateForm, StatusForm
 
 # Create your views here.
 @login_required()
 def index(request):
 	user = UserProfile.objects.get(user=request.user)
 	name = "%s %s %s" % (user.first_name, user.middle_name, user.last_name )
-	mariners_profile = MarinersProfile.objects.filter()
+	mariners_profile = MarinersProfile.objects.filter(status=1)
+	counter = 0
+	count = list()
 	rank = list()
 	age = list()
 	vessel_type = list()
@@ -19,23 +23,32 @@ def index(request):
 
 	for mariners in mariners_profile:
 		# mariners.user - to return the UserProfile instance
+		count.append(1)
 		rank.append(mariners.position)
 		age.append(PersonalData.objects.get(name=mariners.user).age)
 		vessel_type.append(PersonalData.objects.get(name=mariners.user).preferred_vessel_type)
 		mobile_1.append(PersonalData.objects.get(name=mariners.user).mobile_1)
 		email_address_1.append(PersonalData.objects.get(name=mariners.user).email_address_1)
 
+	zipped_data = zip(count, mariners_profile, rank, age, vessel_type, mobile_1, email_address_1)
+
+	print count
 
 	template = "mariner-profile/index.html"
 	context_dict = {"title": "Mariners Profile"}
 	# [0] is put to break the instance into the unicode value
-	context_dict['rank'] = rank[0]
-	context_dict['age'] = age[0]
-	context_dict['vessel_type'] = vessel_type[0]
-	context_dict['mobile_1'] = mobile_1[0]
-	context_dict['email_address_1'] = email_address_1[0]
-	context_dict['mariners_profile'] = mariners_profile
-	context_dict['name'] = name
+	try:
+		context_dict['rank'] = rank
+		context_dict['age'] = age
+		context_dict['vessel_type'] = vessel_type
+		context_dict['mobile_1'] = mobile_1
+		context_dict['email_address_1'] = email_address_1
+		context_dict['mariners_profile'] = mariners_profile
+		context_dict['name'] = name
+		context_dict['zipped_data'] = zipped_data
+		context_dict['count'] = count
+	except:
+		pass
 	return render(request, template, context_dict)
 
 @login_required()
@@ -43,7 +56,10 @@ def profile(request, id):
 	if id:
 		user_profile = UserProfile.objects.get(id=id)
 		personal_data = PersonalData.objects.get(name=id)
-		spouse = Spouse.objects.get(user=id)
+		try:
+			spouse = Spouse.objects.get(user=id)
+		except:
+			spouse = ''
 		college = College.objects.filter(user=id)
 		highschool = HighSchool.objects.get(user=id)
 		emergency_contact = EmergencyContact.objects.filter(user=id)
@@ -67,6 +83,30 @@ def profile(request, id):
 		# TrainingCertificateDocumentsDetailed = TrainingCertificateDocumentsDetailed.objects.get(user=id)
 		sea_service = SeaService.objects.filter(user=id)
 		mariners_profile = MarinersProfile.objects.get(user=id)
+
+		try:
+			flag_documents = FlagDocuments.objects.get(user=user_profile)
+			flag_list = []
+			flags = get_list_or_404(FlagDocumentsDetailed, flags_documents=flag_documents.id)
+			# print flags
+			for flag in flags:
+				# print flag.id
+				flag_list.append(flag.flags.id)
+			flags = {'flags': flag_list}
+			flags = FlagForm(initial=flags)
+		except:
+			flags = ''
+
+		training_certificate_documents = TrainingCertificateDocuments.objects.get(user=user_profile)
+		training_certificate_list = []
+		training_certificates = get_list_or_404(TrainingCertificateDocumentsDetailed, trainings_certificate_documents=training_certificate_documents.id)
+		# print training_certificates
+		for training_certificate in training_certificates:
+			# print training_certificate.id
+			# print training_certificate.trainings_certificates.id
+			training_certificate_list.append(training_certificate.trainings_certificates.id)
+		training_certificates = {'trainings_certificates': training_certificate_list}
+		trainings_certificates = TrainingCertificateForm(initial=training_certificates)
 
 		template = "mariner-profile/profile.html"
 
@@ -98,5 +138,8 @@ def profile(request, id):
 		# context_dict['TrainingCertificateDocumentsDetailed'] = TrainingCertificateDocumentsDetailed
 		context_dict['sea_service'] = sea_service
 		context_dict['mariners_profile'] = mariners_profile
+
+		context_dict['flags'] = flags
+		context_dict['trainings_certificates'] = trainings_certificates
 
 		return render(request, template, context_dict)

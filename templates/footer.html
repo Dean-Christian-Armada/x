@@ -20,53 +20,5 @@
 
     {% include 'autocomplete_light/static.html' %}
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-    <script language="JavaScript">
-        {% if not request.POST %}
-            $("#id_civil_status option:first-child").text("Civil Status");
-            $("#id_civil_status option:first-child").css("display", "inline");
-            setTimeout(function(){ $("#id_civil_status option:first-child").css("display", "none"); $("#id_civil_status").attr("style", "") }, 500);
-            $(".cause_of_discharge option:first-child").text("Cause of Discharge");
-            $(".cause_of_discharge option:first-child").css("display", "inline");
-            setTimeout(function(){ $(".cause_of_discharge option:first-child").css("display", "none"); $(".cause_of_discharge").attr("style", "") }, 500);
-            $("#id_position_applied option:first-child").text("Position Applied");
-            $("#id_position_applied option:first-child").css("display", "inline");
-            setTimeout(function(){ $("#id_position_applied option:first-child").css("display", "none"); $("#id_position_applied").attr("style", "") }, 500);
-            $("#id_alternative_position option:first-child").text("Position Applied");
-            $("#id_alternative_position option:first-child").css("display", "inline");
-            setTimeout(function(){ $("#id_alternative_position option:first-child").css("display", "none"); $("#id_alternative_position").attr("style", "") }, 500);
-        {% else %}
-            civil_status = $("#id_civil_status option:selected").text();
-            position_applied = $("#id_position_applied option:selected").text();
-            alternative_position = $("#id_alternative_position option:selected").text();
-            // cause_of_discharge = $(".cause_of_discharge option:selected").text();
-            if(civil_status == "---------"){
-                $("#id_civil_status option:first-child").text("Civil Status");
-                $("#id_civil_status option:first-child").css("display", "inline");
-                setTimeout(function(){ $("#id_civil_status option:first-child").css("display", "none"); $("#id_civil_status").attr("style", "") }, 500);
-            }
-            if(position_applied == "---------"){
-                $("#id_position_applied option:first-child").text("Position Applied");
-                $("#id_position_applied option:first-child").css("display", "inline");
-                setTimeout(function(){ $("#id_position_applied option:first-child").css("display", "none"); $("#id_position_applied").attr("style", "") }, 500);
-            }
-            if(alternative_position == "---------"){
-                $("#id_alternative_position option:first-child").text("Alternative Position");
-                $("#id_alternative_position option:first-child").css("display", "inline");
-                setTimeout(function(){ $("#id_alternative_position option:first-child").css("display", "none"); $("#id_alternative_position").attr("style", "") }, 500);
-            }
-            $('table.sea-services').find('.cause_of_discharge').each(function(){
-            $('option:first-child', this).text("Cause of Discharge");
-            $('option:first-child', this).css("display", "inline");
-              if($('option:selected', this).text() != "Cause of Discharge"){
-                $(this).css("color", "#000");
-              }
-            });
-            // To resolve the signature error after request
-            $('#signature').on('show.bs.modal', function (e){
-                // alert('dean');
-              setTimeout(function(){ $(".jsign-wrapper input[value='Reset']").click(); }, 1000);
-            });
-        {% endif %}
-    </script>
   </body>
 </html>

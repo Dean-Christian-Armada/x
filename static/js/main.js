@@ -60,10 +60,6 @@ $(function(){
         }
     };         
 
-    var autocomplete = function(){
-
-    }
-
     // 50 words essay word count validation
     var essay = function(event){
       var _essay = document.getElementById('id_essay');
@@ -97,47 +93,6 @@ $(function(){
         setTimeout(function(){ ul4.prev("td").children("ul").remove(); ul4.next("td").children("input").removeAttr('required'); }, 100);
       }
     }
-    var tertiary = [      
-      "PMI", 
-      "PMMA",
-      "JBLFU",
-      "MAAP",
-      "TIP", 
-    ];
-    var degree = [      
-      "BSMARE", 
-      "BSMT",
-      "EE",
-      "ECE",
-      "COE", 
-    ];
-    var vtype = [
-      "Bulk",
-      "Oil Tanker",
-      "Chem Tanker",
-    ];
-    var flag = [
-      "Caymen Islands",
-      "Marshall Islands",
-      "Liberia",
-      "Cyprus",
-      "Singapore",
-      "Greek",
-    ];
-    var manning_agency = [
-      "ACE NAVIGATION COMPANY INC",
-      "BAN-UDEN CREWING INC",
-      "CAPITAL SHIPMANNING PHILS INC",
-      "DELFI SHIPPING AGENCY INC",
-      "EAGLE CLARC SHIPPING PHILIPPINES INC",
-      "OSTE CREWING PHILIPPINES INC",
-    ];
-    var rank = [
-      "Captain",
-      "Chief Mate",
-      "Chief Engineer",
-      "2nd Engineer",
-    ];
     // End Variables
 
     $("input[name='source']").click(function(e){
@@ -165,16 +120,6 @@ $(function(){
         $('.specific').remove();
       }
     });
-    // $(".ecdis-specific").change(function(){
-    //   val = $(this).val();
-    //   if($(this).is(':checked')){
-    //       label = '<label>(Please specify brand): </label>';
-    //       $(this).parent().append(label+" <input type='text'>");
-    //     }
-    //   else{
-    //     $(this).parent().children("label, input[type='text']").remove();
-    //   }
-    // });
     $("#same_address").change(function(){
       if($(this).is(':checked')){
         unit = $("#permanent_unit").val();
@@ -579,50 +524,6 @@ $(function(){
       }, 500);
     });
 
-    $("#tertiary").autocomplete({
-      source: function(request, response){
-        var results = $.ui.autocomplete.filter(tertiary, request.term);
-        response(results.slice(0, 10));
-      }
-    });
-    $("#degree").autocomplete({
-      source: function(request, response){
-        var results = $.ui.autocomplete.filter(degree, request.term);
-        response(results.slice(0, 10));
-      }
-    });
-    $("body").on("focus", ".vtype", function(){
-      $(this).autocomplete({
-        source: function(request, response){
-          var results = $.ui.autocomplete.filter(vtype, request.term);
-          response(results.slice(0, 10));
-        }
-      });
-    });
-    $("body").on("focus", ".flag", function(){
-      $(this).autocomplete({
-        source: function(request, response){
-          var results = $.ui.autocomplete.filter(flag, request.term);
-          response(results.slice(0, 10));
-        }
-      });
-    });
-    $("body").on("focus", ".manning_agency", function(){
-      $(this).autocomplete({
-        source: function(request, response){
-          var results = $.ui.autocomplete.filter(manning_agency, request.term);
-          response(results.slice(0, 10));
-        }
-      });
-    });
-    $("body").on("focus", ".rank", function(){
-      $(this).autocomplete({
-        source: function(request, response){
-          var results = $.ui.autocomplete.filter(rank, request.term);
-          response(results.slice(0, 10));
-        }
-      });
-    });
     // Enables the signature on the modal
     $('#signature').on('show.bs.modal', function (e){
       $(".jSignature").jSignature();

@@ -15,8 +15,32 @@
     <div class="container-fluid">
       <div class="col-md-8 col-md-offset-1">
 
+
+
+ <!--Application Status
+=================================-->
+<div id="" class="panel panel-primary" style="margin-top: 20px;">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="false" style="color: #fff; text-decoration: none;"><strong>APPLICATION STATUS</strong></div>
+    <div id="" class="panel-collapse collapse-in" aria-expanded="true"> 
+                    <div class="panel-body">
+                            <div class="row" style="margin-top:">
+                      <form method="POST" id="status">
+                        {% csrf_token %}
+                        {% for statii in status.status %}
+                          <div class="col-md-2">
+                            {{ statii }}
+                          </div>
+                        {% endfor %}
+                      </form>
+                    </div>
+                        </div><!--End of Panel Body-->
+              </div><!--End of Collapse-->
+      </div><!--End of Panel Primary-->             
+
+
 <!--Personal Data
 ==========================================-->
+
               <div id="step1" class="panel panel-primary" style="margin-top: 20px;">
             <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#detail1" aria-expanded="false" style="color: #fff; text-decoration: none;"><strong>PERSONAL DATA</strong></div>
                     <div id="detail1" class="panel-collapse collapse-in" aria-expanded="true">              
@@ -95,7 +119,7 @@
                             <div class="col-md-4">
                       <div class="input-group">
                   <span class="input-group-addon">Mobile No. 2:</span>
-                  <input type="text" class="form-control" placeholder="Mobile Number" aria-describedby="basic-addon1" value="{{ personal_data.mobile_2 }}">
+                  <input type="text" class="form-control" placeholder="Mobile Number" aria-describedby="basic-addon1" value="{% if personal_data.mobile_2 %}+63{% endif %}{{ personal_data.mobile_2 }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 4-->
                             <div class="col-md-4">
@@ -153,7 +177,7 @@
  
     <p style="margin-top: 20px; background: #02be9b; color: #fff; padding: 10px;"><strong>Permanent Address</strong></p>
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-2 padding-right-negator">
                       <div class="input-group">
                               <span class="input-group-addon">Unit:</span>
                   <input type="text" class="form-control" placeholder="Lot / House" aria-describedby="basic-addon1" value="{{ personal_data.permanent_address.permanent_unit }}">
@@ -187,7 +211,7 @@
                         
     <p style="margin-top: 20px; background: #02be9b; color: #fff; padding: 10px;"><strong>Current Address</strong></p>
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-2 padding-right-negator">
                       <div class="input-group">
                               <span class="input-group-addon">Unit:</span>
                   <input type="text" class="form-control" placeholder="Lot / House" aria-describedby="basic-addon1" value="{{ personal_data.current_address.current_unit }}">
@@ -341,6 +365,7 @@
                                               <th>Manning Agency</th>
                                               <th>Principal/ ShipOwner</th>
                                               <th>Date Joined</th>
+                                              <th>Date Left</th>
                                               <th>Days</th>
                                               <th>Rank</th>
                                               <th>Cause of Discharge</th>
@@ -354,6 +379,7 @@
                                                 <td>{{ sea_services.flag }}</td>
                                                 <td>{{ sea_services.grt }}</td>
                                                 <td>{{ sea_services.dwt }}</td>
+                                                <td>{{ sea_services.engine_type }}</td>
                                                 <td>{{ sea_services.year_built }}</td>
                                                 <td>{{ sea_services.hp }}</td>
                                                 <td>{{ sea_services.kw }}</td>
@@ -372,7 +398,8 @@
                   </div><!--End of Panel Body-->
               </div><!--End of Collapse-->
       </div><!--End of Panel Primary-->
-                        
+        
+
 <!--Educational Information
 ====================================-->
 <div id="step4" class="panel panel-primary" style="margin-top: 10px;">
@@ -484,46 +511,32 @@
                     <div class="panel-body">  
                         
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">Passport No.:</span>
                   <input type="text" class="form-control" placeholder="Passport Number" aria-describedby="basic-addon1" value="{{ passport.passport }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
                            
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">Expiry:</span>
                   <input type="text" class="form-control" placeholder="Issued" aria-describedby="basic-addon1" value="{{ passport.passport_expiry }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
-                            <div class="col-md-4">
-                      <div class="input-group">
-                  <span class="input-group-addon">Place Issued:</span>
-                  <input type="text" class="form-control" placeholder="Place Issued" aria-describedby="basic-addon1" value="{{ passport.passport_place_issued }}">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
-                    </div><!--End of Row-->
-                        
-                        <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">Seaman's Book No.:</span>
                   <input type="text" class="form-control" placeholder="Seaman's Book Number" aria-describedby="basic-addon1" value="{{ sbook.sbook }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">Expiry:</span>
                   <input type="text" class="form-control" placeholder="Issued" aria-describedby="basic-addon1" value="{{ sbook.sbook_expiry }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
-                            <div class="col-md-4">
-                      <div class="input-group">
-                  <span class="input-group-addon">Place Issued:</span>
-                  <input type="text" class="form-control" placeholder="Place Issued" aria-describedby="basic-addon1" value="{{ sbook.sbook_place_issued }}">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
+                          
                     </div><!--End of Row-->
                         
                         <div class="row">
@@ -533,45 +546,23 @@
                   <input type="text" class="form-control" placeholder="SRC" aria-describedby="basic-addon1" value="{{ src.src }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
-                            <div class="col-md-3">
-                      <div class="input-group">
-                  <span class="input-group-addon">Issued:</span>
-                  <input type="text" class="form-control" placeholder="Issued" aria-describedby="basic-addon1" value="{{ src.src_date_issued }}">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
-                            <div class="col-md-3">
-                      <div class="input-group">
-                  <span class="input-group-addon">Expiry:</span>
-                  <input type="text" class="form-control" placeholder="Issued" aria-describedby="basic-addon1" value="{{ src.src_expiry }}">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
+                           
+                          
                             <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">Rank:</span>
                   <input type="text" class="form-control" placeholder="Place Issued" aria-describedby="basic-addon1" value="{{ src.src_rank }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
-                    </div><!--End of Row-->
-                        
-                        <div class="row">
+
                             <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">PRC License:</span>
                   <input type="text" class="form-control" placeholder="PRC License" aria-describedby="basic-addon1" value="{{ license.license }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
-                            <div class="col-md-3">
-                      <div class="input-group">
-                  <span class="input-group-addon">Issued:</span>
-                  <input type="text" class="form-control" placeholder="Issued" aria-describedby="basic-addon1" value="{{ license.license_date_issued }}">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
-                            <div class="col-md-3">
-                      <div class="input-group">
-                  <span class="input-group-addon">Expiry:</span>
-                  <input type="text" class="form-control" placeholder="Issued" aria-describedby="basic-addon1" value="{{ license.license_expiry }}">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
+                           
+                           
                             <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">Rank:</span>
@@ -589,46 +580,43 @@
                   <input type="text" class="form-control" placeholder="G.O.C." aria-describedby="basic-addon1" value="{{ goc.goc }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
-                            <div class="col-md-3">
-                      <div class="input-group">
-                  <span class="input-group-addon">Issued:</span>
-                  <input type="text" class="form-control" placeholder="Issued" aria-describedby="basic-addon1" value="{{ goc.goc_date_issued }}">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
+                          
                             <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">Expiry:</span>
                   <input type="text" class="form-control" placeholder="Issued" aria-describedby="basic-addon1" value="{{ goc.goc_expiry }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
+                        <div class="col-md-3">
+                      <div class="input-group">
+                  <span class="input-group-addon">Yellow Fever:</span>
+                  <input type="text" class="form-control" placeholder="Yellow Fever" aria-describedby="basic-addon1" value="{{ yellow_fever.yellow_fever }}">
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 3-->
+                           
                             <div class="col-md-3">
                       <div class="input-group">
-                  <span class="input-group-addon">Rank:</span>
-                  <input type="text" class="form-control" placeholder="Place Issued" aria-describedby="basic-addon1" value="{{ goc.goc_rank }}">
+                  <span class="input-group-addon">Expiry:</span>
+                  <input type="text" class="form-control" placeholder="Expiry" aria-describedby="basic-addon1" value="{{ yellow_fever.yellow_fever_expiry }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
                     </div><!--End of Row-->
                         
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                       <div class="input-group">
                   <span class="input-group-addon">TESDA C.O.C.:</span>
                   <input type="text" class="form-control" placeholder="TESDA C.O.C." aria-describedby="basic-addon1" value="{{ coc.coc }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
-                            <div class="col-md-3">
-                      <div class="input-group">
-                  <span class="input-group-addon">Issued:</span>
-                  <input type="text" class="form-control" placeholder="Issued" aria-describedby="basic-addon1" value="{{ coc.coc_date_issued }}">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
-                            <div class="col-md-3">
+                            
+                            <div class="col-md-4">
                       <div class="input-group">
                   <span class="input-group-addon">Expiry:</span>
                   <input type="text" class="form-control" placeholder="Issued" aria-describedby="basic-addon1" value="{{ coc.coc_expiry }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 3-->
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                       <div class="input-group">
                   <span class="input-group-addon">Rank:</span>
                   <input type="text" class="form-control" placeholder="Place Issued" aria-describedby="basic-addon1" value="{{ coc.coc_rank }}">
@@ -636,42 +624,30 @@
                             </div><!--End of Col 3-->
                     </div><!--End of Row-->
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">US Visa(C1/D):</span>
                   <input type="radio" name="us_visa" {% if us_visa.us_visa %}checked{% endif %}> Yes 
                                 <input type="radio" name="us_visa" {% if not us_visa.us_visa %}checked{% endif %} > No
               </div><!--End of Input Group-->
                             </div><!--End of Col 4-->
-                            <div class="col-md-4">
-                      <div class="input-group">
-                  <span class="input-group-addon">Place Issued:</span>
-                  <input type="text" class="form-control" placeholder="Place Issued" aria-describedby="basic-addon1">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 4-->
-                            <div class="col-md-4">
+                            
+                            <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">Expiry:</span>
                   <input type="text" class="form-control" placeholder="Expiry" aria-describedby="basic-addon1" value="{{ us_visa.us_visa_expiry }}">
               </div><!--End of Input Group-->
                             </div><!--End of Col 4-->
-                      </div><!--End of Row-->
-                            
-                            <div class="row">
-                            <div class="col-md-4">
+
+                            <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">Schengen Visa(Type C):</span>
                   <input type="radio" name="schengen_visa" {% if schengen_visa.schengen_visa %}checked{% endif %}> Yes
                                 <input type="radio" name="schengen_visa" {% if not schengen_visa.schengen_visa %}checked{% endif %}> No
               </div><!--End of Input Group-->
                             </div><!--End of Col 4-->
-                            <div class="col-md-4">
-                      <div class="input-group">
-                  <span class="input-group-addon">Place Issued:</span>
-                  <input type="text" class="form-control" placeholder="Place Issued" aria-describedby="basic-addon1">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 4-->
-                            <div class="col-md-4">
+                           
+                            <div class="col-md-3">
                       <div class="input-group">
                   <span class="input-group-addon">Expiry:</span>
                   <input type="text" class="form-control" placeholder="Expiry" aria-describedby="basic-addon1" value="{{ schengen_visa.schengen_visa_expiry }}">
@@ -679,32 +655,7 @@
                             </div><!--End of Col 4-->
                       </div><!--End of Row-->
                             
-                            <div class="row">
-                            <div class="col-md-3">
-                      <div class="input-group">
-                  <span class="input-group-addon">Yellow Fever:</span>
-                  <input type="text" class="form-control" placeholder="Yellow Fever" aria-describedby="basic-addon1" value="{{ yellow_fever.yellow_fever }}">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
-                            <div class="col-md-3">
-                      <div class="input-group">
-                  <span class="input-group-addon">Place Issued:</span>
-                  <input type="text" class="form-control" placeholder="Place Issued" aria-describedby="basic-addon1">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
-                            <div class="col-md-3">
-                      <div class="input-group">
-                  <span class="input-group-addon">Date Issued:</span>
-                  <input type="text" class="form-control" placeholder="Date Issued" aria-describedby="basic-addon1">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
-                            <div class="col-md-3">
-                      <div class="input-group">
-                  <span class="input-group-addon">Expiry:</span>
-                  <input type="text" class="form-control" placeholder="Expiry" aria-describedby="basic-addon1" value="{{ yellow_fever.yellow_fever_expiry }}">
-              </div><!--End of Input Group-->
-                            </div><!--End of Col 3-->
-                      </div><!--End of Row-->
+                        
                         </div><!--End of Panel Body-->
                   </div><!--End of Collapse-->
       </div><!--End of Panel Primary-->
@@ -715,87 +666,12 @@
   <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#detail9" aria-expanded="false" style="color: #fff; text-decoration: none;"><strong>FLAG DOCUMENTS</strong></div>
                 <div id="detail9" class="panel-collapse collapse" aria-expanded="false">               
                     <div class="panel-body"> 
-                        <div class="table-responsive">
-                                    <table class="table table-hover sea-tb">
-                                          <thead class="thead">
-                                                  <tr>
-                                                      <th>COUNTRY</th>
-                                                      <th>SB No.</th>
-                                                        <th>Expiry</th>
-                                                        <th>License No.</th>
-                                                        <th>Expiry</th>
-                                                        <th>Rank</th>
-                                                    </tr>
-                                                </thead>
-                                          <tbody>
-                                                  <tr>
-                                                      <td>Marshall Island</td>
-                                                        <td><input type='text' placeholder='SB Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='License Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Rank' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Cayman Island</td>
-                                                        <td><input type='text' placeholder='SB Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='License Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Rank' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Liberia</td>
-                                                        <td><input type='text' placeholder='SB Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='License Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Rank' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Barbados</td>
-                                                        <td><input type='text' placeholder='SB Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='License Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Rank' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>German</td>
-                                                        <td><input type='text' placeholder='SB Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='License Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Rank' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Cpyrus</td>
-                                                        <td><input type='text' placeholder='SB Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='License Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Rank' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Greek</td>
-                                                        <td><input type='text' placeholder='SB Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='License Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Rank' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>Bahamas</td>
-                                                        <td><input type='text' placeholder='SB Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='License Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Expiry' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Rank' class='form-control'></td>
-                                                    </tr>
-                                                </tbody>
-                                        </table><!--End of Table Stripped-->
-                                      </div><!--End of Table Responsive-->                    
-                        </div><!--End of Panel Body-->
+                      {% for flag in flags.flags %}
+                        <div class="col-md-4 padding-right-negator">
+                          {{ flag }}
+                        </div>
+                      {% endfor %}
+                    </div><!--End of Panel Body-->
                    </div><!--End of Collapse-->
       </div><!--End of Panel Primary-->
     
@@ -847,7 +723,7 @@
                       </div><!--End of Row-->
                             
                        <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-2 padding-right-negator">
                       <div class="input-group">
                               <span class="input-group-addon">Unit:</span>
                   <input type="text" class="form-control" placeholder="Lot / House" aria-describedby="basic-addon1" value="{{ emergencies.emergency_unit }}">
@@ -888,254 +764,154 @@
 <!--National Certificates and Travel Documents
 ================================================-->                                    
 <div  id="step11" class="panel panel-primary" style="margin-top: 10px;">
-    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#detail11" aria-expanded="false" style="color: #fff; text-decoration: none;"><strong>TRAININGS/ OTHER CERTIFICATES</strong></div>
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#detail11" aria-expanded="false" style="color: #fff; text-decoration: none;"><strong>TRAININGS / OTHER CERTIFICATES</strong></div>
                 <div id="detail11" class="panel-collapse collapse" aria-expanded="false">              
                   <div class="panel-body"> 
-                  <div class="table-responsive">
-                                        <table class="table table-bordered table-hover sea-tb">
-                                          <thead class="thead">
-                                                  <tr>
-                                                      <th>Training Course</th>
-                                                      <th>Number</th>
-                                                        <th>Issued</th>
-                                                        <th>School/ Training Center</th>
-                                                    </tr>
-                                                </thead>
-                                          <tbody>
-                                                  <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="BT w/ PSSR" style="text-decoration: none;">BT w/ PSSR</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="PSCRB" style="text-decoration: none;">PSCRB</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="AFF" style="text-decoration: none;">AFF</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="MEFA" style="text-decoration: none;">MEFA</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="MECA" style="text-decoration: none;">MECA</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="PFRB" style="text-decoration: none;">PFRB</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SSBT" style="text-decoration: none;">SSBT</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="BRM" style="text-decoration: none;">BRM</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="BTM" style="text-decoration: none;">BTM</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="GTF/ BTOT" style="text-decoration: none;">GTF/BTOT</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SBFF" style="text-decoration: none;">SBFF</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="STOT/ ATOT" style="text-decoration: none;">STOT/ ATOT</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="STCT/ ATCT" style="text-decoration: none;">STCT/ ATCT</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="INMARSAT" style="text-decoration: none;">INMARSAT</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="GMDSS" style="text-decoration: none;">GMDSS</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="ECDIS" style="text-decoration: none;">ECDIS</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SPERRY" style="text-decoration: none;">SPERRY</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="JRC" style="text-decoration: none;">JRC</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="FURUNO" style="text-decoration: none;">FURUNO</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="MARPOL I-IV" style="text-decoration: none;">MARPOL I-VI</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="ISM Code" style="text-decoration: none;">ISM CODE</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="PADAMS" style="text-decoration: none;">PADAMS</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SHIP HANDLING" style="text-decoration: none;">SHIP HANDLING</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="HAZMAT" style="text-decoration: none;">HAZMAT</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="COW/ IGS" style="text-decoration: none;">COW/IGS</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="ERS/ ERM" style="text-decoration: none;">ERS/ERM</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SSO" style="text-decoration: none;">SSO</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SWK/ EWK" style="text-decoration: none;">SWK/EWK</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="MARITIME ENGLISH" style="text-decoration: none;">MARITIME ENGLISH</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="RSC" style="text-decoration: none;">RSC</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SRROC" style="text-decoration: none;">SRROC</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="FRAMO" style="text-decoration: none;">FRAMO</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SSMEP" style="text-decoration: none;">SSMEP</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SAFETY OFFICER COURSE" style="text-decoration: none;">SAFETY OFFICER COURSE</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SHIP VETTING" style="text-decoration: none;">SHIP VETTING</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="ACCIDENT & NEAR MISS INV." style="text-decoration: none;">ACCIDENT & NEAR MISS INV.</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="SSA and SDSD" style="text-decoration: none;">SSA and SDSD</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td><a data-toggle="tooltip" data-placement="left" title="ARPA/ ROPA" style="text-decoration: none;">ARPA/ ROPA</a></td>
-                                                        <td><input type='text' placeholder='Number' class='form-control'></td>
-                                                        <td><input type='text' placeholder='Issued' class='form-control'></td>
-                                                        <td><input type='text' placeholder='School / Training Center' class='form-control'></td>
-                                                    </tr>
-                                    </tbody>
-                                        </table><!--End of Table Stripped-->
-                                      </div><!--End of Table Responsive-->
+                    {% for certs in trainings_certificates.trainings_certificates %}
+                      <div class="col-md-6">
+                        {{ certs }}
+                      </div>
+                    {% endfor %}
                 </div><!--End of Panel Body-->
                     </div><!--End of Collapse-->
       </div><!--End of Panel Primary--> 
+
+ <!--How did you learn about Manship
+=================================-->
+<div id="step15" class="panel panel-primary" style="margin-top: 10px;">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#sources" aria-expanded="false" style="color: #fff; text-decoration: none;"><strong>HOW DID YOU LEARN ABOUT MANSHIP</strong></div>
+    <div id="sources" class="panel-collapse collapse" aria-expanded="false"> 
+      <div class="panel-body">
+        {{ application_form.application_source }}
+      </div><!--End of Panel Body-->
+    </div><!--End of Collapse-->
+</div><!--End of Panel Primary-->   
+
+<!--Background Information
+=================================-->
+<div id="step23" class="panel panel-primary" style="margin-top: 10px;">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#backgroundinformation" aria-expanded="false" style="color: #fff; text-decoration: none;"><strong>BACKGROUND INFORMATION</strong></div>
+    <div id="backgroundinformation" class="panel-collapse collapse" aria-expanded="false"> 
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                      <div class="input-group">
+                  <label>A. Have you ever been denied an applicationfor any visa or entry into any country?</label>
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 9-->
+                            <div class="col-md-3">
+                      <div class="input-group">
+                  <input type="radio" name="visa_application" {% if visa_application.visa_application %}checked{% endif %}> Yes
+                                <input type="radio" name="visa_application" {% if not visa_application.visa_application %}checked{% endif %}> No
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 3-->
+                        </div><!--End of Row-->
+                        {% if visa_application.visa_application %}
+                        <div class="row">
+                            <div class="col-md-12">
+                      <div class="form-group">
+                            <textarea class="form-control" rows="5" style="width: 100%;"></textarea>
+                        </div><!--End of Input Group-->
+                            </div><!--End of Col 3-->
+                        </div><!--End of Row-->
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-md-9">
+                      <div class="input-group">
+                  <label>B. Have you ever been detained or been ordered to leave any country?</label>
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 9-->
+                            <div class="col-md-3">
+                      <div class="input-group">
+                  <input type="radio" name="detained" {% if detained.detained %}checked{% endif %}> Yes
+                                <input type="radio" name="detained" {% if not detained.detained %}checked{% endif %}> No
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 3-->
+                        </div><!--End of Row-->
+                        
+                        {% if detained.detained %}
+                          <div class="row">
+                              <div class="col-md-12">
+                        <div class="form-group">
+                              <textarea class="form-control" rows="5" style="width: 100%;"></textarea>
+                          </div><!--End of Input Group-->
+                              </div><!--End of Col 3-->
+                          </div><!--End of Row-->
+                        {% endif %}
+                        
+                        <div class="row">
+                            <div class="col-md-9">
+                      <div class="input-group">
+                  <label>C. Have you ever been the subject of any disciplinary action during an employment contract?</label>
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 9-->
+                            <div class="col-md-3">
+                      <div class="input-group">
+                  <input type="radio" name="disciplinary_action" {% if disciplinary_action.disciplinary_action %}checked{% endif %}> Yes
+                                <input type="radio" name="disciplinary_action" {% if not disciplinary_action.disciplinary_action %}checked{% endif %}> No
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 3-->
+                        </div><!--End of Row-->
+                        {% if disciplinary_action.disciplinary_action %}
+                        <div class="row">
+                            <div class="col-md-12">
+                      <div class="form-group">
+                            <textarea class="form-control" rows="5" style="width: 100%;"></textarea>
+                        </div><!--End of Input Group-->
+                            </div><!--End of Col 3-->
+                        </div><!--End of Row-->
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col-md-9">
+                      <div class="input-group">
+                  <label>D. Have you ever been charged any offense before an administrative body, prosecutor's office or court of law?</label>
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 9-->
+                            <div class="col-md-3">
+                      <div class="input-group">
+                  <input type="radio" name="charged_offense" {% if charged_offense.charged_offense %}checked{% endif %}> Yes
+                                <input type="radio" name="charged_offense" {% if not charged_offense.charged_offense %}checked{% endif %}> No
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 3-->
+                        </div><!--End of Row-->
+                        {% if charged_offense.charged_offense %}
+                        <div class="row">
+                            <div class="col-md-12">
+                      <div class="form-group">
+                            <textarea class="form-control" rows="5" style="width: 100%;"></textarea>
+                        </div><!--End of Input Group-->
+                            </div><!--End of Col 3-->
+                        </div><!--End of Row-->
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col-md-9">
+                      <div class="input-group">
+                  <label>E. Have you ever been terminated for cause by any employer?</label>
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 9-->
+                            <div class="col-md-3">
+                      <div class="input-group">
+                  <input type="radio" name="termination" {% if termination.termination %}checked{% endif %}> Yes
+                                <input type="radio" name="termination" {% if not termination.termination %}checked{% endif %}> No
+              </div><!--End of Input Group-->
+                            </div><!--End of Col 3-->
+                        </div><!--End of Row-->
+                        {% if termination.termination %}
+                        <div class="row">
+                            <div class="col-md-12">
+                      <div class="form-group">
+                            <textarea class="form-control" rows="5" style="width: 100%;"></textarea>
+                        </div><!--End of Input Group-->
+                            </div><!--End of Col 3-->
+                        </div><!--End of Row-->
+                        {% endif %}
+
+                        </div><!--End of Panel Body-->
+              </div><!--End of Collapse-->
+      </div><!--End of Panel Primary-->            
+
             
 <!--Evaluation
 =================================-->
@@ -1147,6 +923,20 @@
                         </div><!--End of Panel Body-->
               </div><!--End of Collapse-->
       </div><!--End of Panel Primary-->            
+
+<!--Essay
+=================================-->
+{% if application_form.essay  %}
+<div id="step22" class="panel panel-primary" style="margin-top: 10px;">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#essay" aria-expanded="false" style="color: #fff; text-decoration: none;"><strong>Essay (<i>{{ count_words }} words</i>)</strong></div>
+    <div id="essay" class="panel-collapse collapse" aria-expanded="false"> 
+                    <div class="panel-body">
+                        <textarea class="form-control" id="essay">{{ application_form.essay }}</textarea>
+                        
+                        </div><!--End of Panel Body-->
+              </div><!--End of Collapse-->
+      </div><!--End of Panel Primary-->            
+{% endif %}
 
 <!--Reference
 =================================-->
@@ -1316,7 +1106,17 @@
                   </div><!--End of Panel Body-->
               </div><!--End of Collapse-->
       </div><!--End of Panel Primary-->
-             
+
+ <!--Signature
+=================================-->
+<div id="step14" class="panel panel-primary" style="margin-top: 10px;">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#signature" aria-expanded="false" style="color: #fff; text-decoration: none;"><strong>SIGNATURE</strong></div>
+    <div id="signature" class="panel-collapse collapse" aria-expanded="false"> 
+                    <div class="panel-body">
+                        <img src="{{ MEDIA_URL }}{{ mariners_profile.signature }}" width="100%">
+                        </div><!--End of Panel Body-->
+              </div><!--End of Collapse-->
+      </div><!--End of Panel Primary-->             
             
   </div><!--End of Col-9-->          
 <!--End of Sidebar Fixed-->
@@ -1331,11 +1131,13 @@
       </div><!--End of Input Group-->
             <div class="input-group" style="width: 100%; text-align: center">
            <!-- <input type="text" class="form-control" placeholder="Name of the Seaferer" value="{{ mariners_profile.position }}"> -->
-           <strong><u>{{ mariners_profile.position }}</u></strong>
+           Position Applied: &nbsp;<strong><u>{{ application_form.position_applied }}</u></strong><br />
+           Alternative Position: <strong><u>{{ application_form.alternative_position }}</u></strong><br />
+           Application Date: <strong><u>{{ application_form.application_date }}</u></strong>
       </div><!--End of Input Group-->
       <div class="input-group" style="width:100%; text-align: center;">
-                <button type="button" class="btn btn-msmi"><span class="glyphicon glyphicon-print"><strong> Print</strong></span></button>
-                <button type="button" class="btn btn-msmi"><span class="glyphicon glyphicon-export"><strong> Export</strong></span></button>
+                <a href="{% url 'pdf_profile' id=application_form.user.id %}" class="btn btn-msmi" target="_blank"><span class="glyphicon glyphicon-print"><strong> Print</strong></span></a>
+                <a href="#" class="btn btn-msmi"><span class="glyphicon glyphicon-export"><strong> Export</strong></span></a>
             </div><!--End of Input Group-->
             <ul class="nav bs-docs-sidenav" style="margin-top: 10px;">
               <li>
@@ -1357,13 +1159,27 @@
                 <a href="#step10">Emergency Details</a>
               </li>
               <li>
-                <a href="#step11">Trainings/ Other Certificates</a>
+                <a href="#step11">Trainings / Other Certificates</a>
+              </li>
+              <li>
+                <a href="#step15">How did you learn about Manship?</a>
+              </li>
+              <li>
+                <a href="#step23">Background Information</a>
               </li>
               <li>
                 <a href="#step12">Evaluation</a>
               </li>
+              {% if application_form.essay  %}
+                <li>
+                  <a href="#step22">Essay</a>
+                </li>
+              {% endif %}
               <li>
                 <a href="#step13">Reference</a>
+              </li>
+              <li>
+                <a href="#step14">Signature</a>
               </li>
               <li>
                 <a class="back-to-top" href="#top"><strong>Back to top</strong></a>
@@ -1385,6 +1201,12 @@
       if(aria_expanded == 'false'){
         $("#"+href).children().click();
       }
+    });
+
+    $("input[name='status']").change(function(){
+      val = $(this).val();
+      // alert(val);
+      $("form#status").submit();
     });
   </script>
 {% endblock %}
